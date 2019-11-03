@@ -1,0 +1,1 @@
+alias view='nvim -MR'

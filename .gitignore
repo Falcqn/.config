@@ -1,0 +1,10 @@
+*
+!.gitignore
+!bashrc
+!bashrc.d
+!bashrc.d/*
+!bash_profile
+!bash_profile.d
+!bash_profile.d/*
+!nvim
+!nvim/init.vim
