@@ -5,6 +5,7 @@
 "   + You must be using NeoVim
 "   + Python 3 must be installed, with neovim support installed
 "       (pip install neovim)
+"   + NodeJS must be installed (for Coc)
 "   + You must have Vim-Plug installed
 "   + Your terminal must support 256 colours
 "   + For best results, use a Powerline patched font
@@ -16,10 +17,10 @@ autocmd! BufWritePost vimrc source %
 
 " Setup and Config
 " ------------------------------------------------------------------------------
-set nocompatible            " Remove vi compatibility
-set showcmd                 " Show previous command in bottom bar
-set wildmenu                " Visual autocomplete for command menu e.g. :e ~/.vim<TAB>
-set number                  " Show line numbers
+set nocompatible    " Remove vi compatibility
+set showcmd         " Show previous command in bottom bar
+set wildmenu        " Visual autocomplete for command menu e.g. :e ~/.vim<TAB>
+set number          " Show line numbers
 
 " Unmap the arrow keys and mouse
 no <left> <Nop>
@@ -38,9 +39,9 @@ autocmd VimEnter * WipeReg
 
 " File operations
 " ------------------------------------------------------------------------------
-set autoread                " Auto-read files that change during editing
-set autowrite               " Auto-write unwritten buffers when switching to another
-set hidden                  " Makes it so buffers are only hidden when switching to another
+set autoread        " Auto-read files that change during editing
+set autowrite       " Auto-write unwritten buffers when switching
+set hidden          " Makes it so buffers are only hidden when switching
 
 set undodir=~/.vim/vimundo  " Persistent undo
 set undofile
@@ -93,16 +94,13 @@ set matchpairs+=<:>
 let g:python3_host_prog = '/usr/bin/python3'
 
 " Plugins
-call plug#begin('~/.config/nvim/plugged')
-
-" Vim-Monokai :: https://github.com/sickill/vim-monokai
 " ------------------------------------------------------------------------------
-  Plug 'sickill/vim-monokai'
+call plug#begin('~/.config/nvim/plugged')
 
 " Gruvbox :: https://github.com/morhetz/gruvbox
 " ------------------------------------------------------------------------------
   Plug 'morhetz/gruvbox'
-    let g:gruvbox_contrast_dark='medium'
+  let g:gruvbox_contrast_dark='medium'
 
 " Vim-Surround :: http://vimawesome.com/plugin/surround-vim
 " ------------------------------------------------------------------------------
@@ -117,48 +115,38 @@ call plug#begin('~/.config/nvim/plugged')
 " Vim-Airline :: http://vimawesome.com/plugin/vim-airline
 " ------------------------------------------------------------------------------
   Plug 'bling/vim-airline'
-    let g:airline_theme='distinguished'
-    let g:airline_powerline_fonts=0
+  let g:airline_theme='distinguished'
+  let g:airline_powerline_fonts=0
 
-    " Create the airline symbols table if it doesn't exist
-    " if !exists('g:airline_symbols')
-    "   let g:airline_symbols = {}
-    " endif
+  " Create the airline symbols table if it doesn't exist
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
 
-    " Unicode symbols
-    " let g:airline_symbols.linenr = '☰'
-    " let g:airline_symbols.maxlinenr = ''
-    " let g:airline_symbols.notexists = '∄'
-    " let g:airline_symbols.whitespace = 'Ξ'
+  " Unicode symbols
+  " let g:airline_symbols.linenr = '☰'
+  " let g:airline_symbols.maxlinenr = ''
+  " let g:airline_symbols.notexists = '∄'
+  " let g:airline_symbols.whitespace = 'Ξ'
 
-    " Powerline symbols
-    " let g:airline_left_sep = ''
-    " let g:airline_left_alt_sep = ''
-    " let g:airline_right_sep = ''
-    " let g:airline_right_alt_sep = ''
-    " let g:airline_symbols.branch = ''
-    " let g:airline_symbols.readonly = ''
+  " Powerline symbols
+  " let g:airline_left_sep = ''
+  " let g:airline_left_alt_sep = ''
+  " let g:airline_right_sep = ''
+  " let g:airline_right_alt_sep = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.readonly = ''
 
-    " Tabline
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#buffers_label = 'b'
-    let g:airline#extensions#tabline#tabs_label = 't'
-    let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-    let g:airline#extensions#tabline#fnamemod = ':p:.'
+  " Tabline
+  let g:airline#extensions#tabline#enabled = 0
+  let g:airline#extensions#tabline#buffers_label = 'b'
+  let g:airline#extensions#tabline#tabs_label = 't'
+  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+  let g:airline#extensions#tabline#fnamemod = ':p:.'
 
 " Vim-Airline-Themes :: http://vimawesome.com/plugin/vim-airline-themes
 " ------------------------------------------------------------------------------
   Plug 'vim-airline/vim-airline-themes'
-
-" Vim-Bufferline :: https://github.com/bling/vim-bufferline
-" Disabled in favour of using airline-tabline
-" ------------------------------------------------------------------------------
-"  Plug 'bling/vim-bufferline'
-"    let g:airline#extensions#bufferline#enabled=0
-"    let g:bufferline_echo = 0
-"    let g:bufferline_modified = '+'
-"    let g:bufferline_rotate = 1
-"    let g:bufferline_fixed_index = 1
 
 " MatchTagAlways :: http://vimawesome.com/plugin/matchtagalways
 " ------------------------------------------------------------------------------
@@ -168,26 +156,28 @@ call plug#begin('~/.config/nvim/plugged')
 " ------------------------------------------------------------------------------
   Plug 'sheerun/vim-polyglot'
 
-" Deoplete :: http://vimawesome.com/plugin/deoplete-nvim
+" Conquerer of Completion :: https://github.com/neoclide/coc.nvim
 " ------------------------------------------------------------------------------
-  Plug 'shougo/deoplete.nvim'
-    let g:deoplete#enable_at_startup = 1
-    inoremap <silent><expr> <Tab>
-          \ pumvisible() ? "\<C-n>" :
-          \ "<Tab>"
-    inoremap <silent><expr> <S-Tab>
-          \ pumvisible() ? "\<C-p>" :
-          \ "<S-Tab>"
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Deoplete-CLang :: https://github.com/zchee/deoplete-clang
-" Autocomplete for C
-"
-" DISABLED BECAUSE BUGGY
+" NerdTree
 " ------------------------------------------------------------------------------
-"  Plug 'zchee/deoplete-clang'
-"    let g:deoplete#sources#clang#libclang_path = '/usr/lib64/llvm/libclang.so'
-"    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
-"    let g:deoplete#sources#clang#std = {'c': 'c99'}
+  Plug 'scrooloose/nerdtree'
+  nmap <C-n> :NERDTreeToggle<CR>
+  let g:NERDTreeShowHidden = 1
+  let g:NERDTreeWinSize = 48
+
+  " If more than one window and previous buffer was NERDTree, go back to it.
+  " (prevents opening buffers in the nerdtree window)
+  autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
+" NERDTree git integration
+" ------------------------------------------------------------------------------
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+    let g:NERDTreeGitStatusWithFlags = 1
+
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'airblade/vim-gitgutter'
 
 " fzf :: https://github.com/junegunn/fzf.vim
 " Fuzzy Find
@@ -196,7 +186,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Vim-Lawrencium :: https://github.com/ludovicchabant/vim-lawrencium
 " ------------------------------------------------------------------------------
-  Plug 'ludovicchabant/vim-lawrencium'
+" Plug 'ludovicchabant/vim-lawrencium'
 
 " File-Line :: https://github.com/bogado/file-line
 " ------------------------------------------------------------------------------
@@ -210,13 +200,6 @@ call plug#end()
 set background=dark
 colo gruvbox
 
-
-" Set Deoplete's matcher (must be done outside plug block)
-call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
-
-" Auto close the preview window when completion is done
-autocmd CompleteDone * pclose!
-
 " Abbreviations
 " ------------------------------------------------------------------------------
 iab fileheader /* ------------------------------------------------------------------------------<ESC>o File:<ESC>o<BS> Author:<ESC>o<BS>--------------------------------------------------------------------------- */<ESC>o<ESC>
@@ -224,7 +207,3 @@ iab fileheader /* --------------------------------------------------------------
 iab breakline /* --------------------------------------------------------------------------- */<ESC>
 
 iab whilei {<ESC>oint i=1;<ESC>owhile (i)<ESC>o;<ESC>o}<ESC>
-
-" ------------------------------------------------------------------------------
-"  End of the VimRC!
-" ------------------------------------------------------------------------------

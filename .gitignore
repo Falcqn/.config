@@ -8,3 +8,4 @@
 !bash_profile.d/*
 !nvim
 !nvim/init.vim
+!nvim/coc-settings.json

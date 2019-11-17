@@ -1,4 +1,3 @@
-
 FmtReset='\[$(tput sgr0)\]'
 #FmtBold='\[\e[2m\]'
 
