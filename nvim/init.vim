@@ -51,7 +51,10 @@ set undolevels=10000
 map <C-J> <ESC>:bp<CR>
 map <C-K> <ESC>:bn<CR>
 
-" Jump to the last position when reopening a file
+" Fix for closing buffers when using NERDtree
+noremap <leader>c :bp<cr>:bd #<cr>
+
+" Jump to the previous cursor position when reopening a file
 :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
 " Set the right syntax highlighting for c++ module files
@@ -71,7 +74,6 @@ set tabstop=2               " Align to multiples of 2 columns
 set smarttab autoindent     " Enable auto-indentation
 set backspace=2             " Allow backspacing over line breaks, autoindents,
                             " and the start of insert
-set colorcolumn=80	    " highlight the 80th column
 
 " Clear trailing whitespace in selected file types on save
 " autocmd BufWritePre *.py,*.jsx?,*.hs,*.html,*.css,*.scss,*.c,*.h :%s/\s\+$//e
@@ -138,7 +140,7 @@ call plug#begin('~/.config/nvim/plugged')
   let g:airline_symbols.readonly = ''
 
   " Tabline
-  let g:airline#extensions#tabline#enabled = 0
+  let g:airline#extensions#tabline#enabled = 1
   let g:airline#extensions#tabline#buffers_label = 'b'
   let g:airline#extensions#tabline#tabs_label = 't'
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
