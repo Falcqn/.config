@@ -51,9 +51,6 @@ set undolevels=10000
 map <C-J> <ESC>:bp<CR>
 map <C-K> <ESC>:bn<CR>
 
-" Fix for closing buffers when using NERDtree
-noremap <leader>c :bp<cr>:bd #<cr>
-
 " Jump to the previous cursor position when reopening a file
 :au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
@@ -162,16 +159,31 @@ call plug#begin('~/.config/nvim/plugged')
 " ------------------------------------------------------------------------------
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+  " use <tab> for trigger completion and navigate to the next complete item
+  function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+  endfunction
+
+  inoremap <silent><expr> <Tab>
+        \ pumvisible() ? "\<C-n>" :
+        \ <SID>check_back_space() ? "\<Tab>" :
+        \ coc#refresh()
+
 " NerdTree
 " ------------------------------------------------------------------------------
   Plug 'scrooloose/nerdtree'
   nmap <C-n> :NERDTreeToggle<CR>
   let g:NERDTreeShowHidden = 1
   let g:NERDTreeWinSize = 48
+  let g:NERDTreeWinPos = "right"
 
   " If more than one window and previous buffer was NERDTree, go back to it.
   " (prevents opening buffers in the nerdtree window)
   autocmd BufEnter * if bufname('#') =~# "^NERD_tree_" && winnr('$') > 1 | b# | endif
+
+  " If only one window left open and it is NERDTree, exit nvim
+  autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " NERDTree git integration
 " ------------------------------------------------------------------------------
@@ -195,6 +207,11 @@ call plug#begin('~/.config/nvim/plugged')
 " Adds the ability to open a file and jump to a line using 'nvim file:line'
 " Eg 'nvim some_lib.c:23'
   Plug 'bogado/file-line'
+
+" vim-bufkill
+" ------------------------------------------------------------------------------
+" Kills a buffer without closing the window
+  Plug 'qpkorr/vim-bufkill'
 
 call plug#end()
 
