@@ -12,17 +12,16 @@ PROMPT_COMMAND=__prompt_command
 
 __prompt_command()
 {
-  local ExitStatus="$?"
-  local ShellLevel="$SHLVL"
-
   PS1=""
 
   # Exit status
-  [[ $ExitStatus != 0 ]] && PS1+="${FgRed}${ExitStatus} "
+  [[ $? != 0 ]] && PS1+="${FgRed}$? "
 
-  # shell (scheme?)
+  # Shell
   PS1+="${FgYellow}"
+  local ShellLevel="$SHLVL"
 
+  # Display if we're in tmux
   if [[ $TMUX ]]; then
     PS1+="tmux."
     let ShellLevel--
@@ -30,10 +29,10 @@ __prompt_command()
 
   PS1+='\s'
 
-  # shell level
+  # Display shell level
   [[ $ShellLevel > 1 ]] && PS1+=".${ShellLevel}"
 
-  # scheme-authority separator
+  # Scheme-authority separator
   PS1+="${FgWhite}://"
 
   # user
@@ -42,8 +41,13 @@ __prompt_command()
   # @host
   PS1+="${FgWhite}@${FgPurple}\h"
 
-  # /directory
-  PS1+="${FgWhite}/${FgBlue}\W"
+  # /path
+  IFS='/'
+  read -ra SPLIT_PWD <<< $PWD
+  for SEGMENT in "${SPLIT_PWD[@]}"; do
+    [[ $SEGMENT ]] && PS1+="${FgWhite}/${FgBlue}${SEGMENT}"
+  done
+  IFS=' '
 
   # $ end
   PS1+="${FgRed} \$${FmtReset} "
