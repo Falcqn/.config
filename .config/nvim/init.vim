@@ -96,10 +96,11 @@ let g:python3_host_prog = '/usr/bin/python3'
 " ------------------------------------------------------------------------------
 
 " Auto-Install vim-plug
-let vim_plug_location='~/.local/share/nvim/site/autoload/plug.vim'
-if empty(glob(vim_plug_location))
-  silent !curl -fLo $vim_plug_location --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+let g:plug_location='~/.local/share/nvim/site/autoload/plug.vim'
+let g:plug_repository='https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+if empty(glob(plug_location))
+  execute '!curl -fLo ' . g:plug_location . ' --create-dirs ' . g:plug_repository
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
