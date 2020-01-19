@@ -14,18 +14,26 @@ __prompt_command()
 {
   local ExitStatus="$?"
   local ShellLevel="$SHLVL"
+
   PS1=""
 
   # Exit status
   [[ $ExitStatus != 0 ]] && PS1+="${FgRed}${ExitStatus} "
 
   # shell (scheme?)
-  PS1+="${FgYellow}\s"
+  PS1+="${FgYellow}"
 
-  ## shell level
-  [[ $ShellLevel > 1 ]] && PS1+="[${ShellLevel}]"
+  if [[ $TMUX ]]; then
+    PS1+="tmux."
+    let ShellLevel--
+  fi
 
-  ## scheme-authority separator
+  PS1+='\s'
+
+  # shell level
+  [[ $ShellLevel > 1 ]] && PS1+=".${ShellLevel}"
+
+  # scheme-authority separator
   PS1+="${FgWhite}://"
 
   # user
