@@ -1,1 +1,1 @@
-[[ -f $(which bat) ]] && alias cat='bat'
+[[ -x "$(command -v bat)" ]] && alias cat='bat'

@@ -1,1 +1,1 @@
-[[ -f $(which prettyping) ]] && alias ping='prettyping --nolegend --nounicode'
+[[ -x $(command -v prettyping) ]] && alias ping='prettyping --nolegend --nounicode'

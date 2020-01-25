@@ -1,1 +1,1 @@
-alias tree='tree -C'
+[[ -x "$(command -v tree)" ]] && alias tree='tree -C'
