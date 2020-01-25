@@ -27,6 +27,11 @@ __prompt_command()
     let ShellLevel--
   fi
 
+  if [[ $IN_NIX_SHELL ]]; then
+    PS1+="nix-shell."
+    let ShellLevel--
+  fi
+
   PS1+='\s'
 
   # Display shell level
