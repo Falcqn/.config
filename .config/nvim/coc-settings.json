@@ -2,16 +2,13 @@
   "languageserver": {
     "clangd": {
       "command": "clangd",
-      "args": ["--background-index"],
+      "args": ["--background-index", "--compile-commands-dir=build"],
       "rootPatterns": [
-        "compile_flags.txt",
-        "compile_commands.json",
-        "build/compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
+        "CMakeLists.txt",
+        ".git",
+        ".hg"
       ],
-      "filetypes": ["c", "cpp", "cppm", "h", "hpp"]
+      "filetypes": ["c", "cpp", "cppm", "cxx", "h", "hpp"]
     }
   }
 }
