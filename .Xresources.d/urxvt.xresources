@@ -1,0 +1,5 @@
+#include "colours/gruvbox-dark.xresources"
+
+! Urxvt fonts
+URxvt.font xft:Fira Mono:style=Regular,Symbols-2048-em Nerd Font Complete
+URxvt.boldFont xft:Fira Mono:style=Bold,Symbols-2048-em Nerd Font Complete
