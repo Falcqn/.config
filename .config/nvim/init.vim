@@ -200,7 +200,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'Xuyuanp/nerdtree-git-plugin'
     let g:NERDTreeGitStatusWithFlags = 1
 
-  Plug 'ryanoasis/vim-devicons'
   Plug 'airblade/vim-gitgutter'
 
 " fzf :: https://github.com/junegunn/fzf.vim
@@ -222,6 +221,11 @@ call plug#begin('~/.config/nvim/plugged')
 " ------------------------------------------------------------------------------
 " Kills a buffer without closing the window
   Plug 'qpkorr/vim-bufkill'
+
+" vim-devicons
+" ------------------------------------------------------------------------------
+"  Pretty icons for files and folders
+  Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
