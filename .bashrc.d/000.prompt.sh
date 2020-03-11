@@ -19,23 +19,17 @@ __prompt_command()
 
   # Shell
   PS1+="${FgYellow}"
-  local ShellLevel="$SHLVL"
 
   # Display if we're in tmux
   if [[ $TMUX ]]; then
-    PS1+="tmux."
-    let ShellLevel--
+    PS1+="tmux+"
   fi
 
   if [[ $IN_NIX_SHELL ]]; then
-    PS1+="nix-shell."
-    let ShellLevel--
+    PS1+="nix-shell"
+  else
+    PS1+='\s'
   fi
-
-  PS1+='\s'
-
-  # Display shell level
-  [[ $ShellLevel > 1 ]] && PS1+=".${ShellLevel}"
 
   # Scheme-authority separator
   PS1+="${FgWhite}://"
