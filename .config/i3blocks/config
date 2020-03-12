@@ -1,0 +1,7 @@
+[user@host]
+command=echo "$USER@$(hostname)"
+interval=once
+
+[time]
+command=date +%T
+interval=5
