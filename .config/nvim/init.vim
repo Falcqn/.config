@@ -180,6 +180,10 @@ call plug#begin('~/.config/nvim/plugged')
         \ <SID>check_back_space() ? "\<Tab>" :
         \ coc#refresh()
 
+" Vim-Clang-Format
+" ------------------------------------------------------------------------------
+  Plug 'rhysd/vim-clang-format'
+
 " NerdTree
 " ------------------------------------------------------------------------------
   Plug 'scrooloose/nerdtree'
