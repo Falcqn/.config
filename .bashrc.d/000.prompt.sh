@@ -12,10 +12,11 @@ PROMPT_COMMAND=__prompt_command
 
 __prompt_command()
 {
+  RESULT=$?
   PS1=""
 
   # Exit status
-  [[ $? != 0 ]] && PS1+="${FgRed}$? "
+  [[ $RESULT != 0 ]] && PS1+="${FgRed}$RESULT "
 
   # Shell
   PS1+="${FgYellow}"
