@@ -180,9 +180,26 @@ call plug#begin('~/.config/nvim/plugged')
         \ <SID>check_back_space() ? "\<Tab>" :
         \ coc#refresh()
 
-" Vim-Clang-Format
-" ------------------------------------------------------------------------------
-  Plug 'rhysd/vim-clang-format'
+  " Code Navigation
+  nmap <silent> gd <Plug>(coc-definition)
+  nmap <silent> gy <Plug>(coc-type-definition)
+  nmap <silent> gi <Plug>(coc-implementation)
+  nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> [g <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+  " highlight references on hover
+  autocmd CursorHold * silent call CocActionAsync('highlight')
+
+  " rename symbols
+  nmap <leader>rn <Plug>(coc-rename)
+
+  " apply auto-fix
+  nmap <leader>qf <Plug>(coc-fix-current)
+
+  " use CTRL-space to reformat document
+  command! -nargs=0 CocFormat :call CocAction('format')
+  nnoremap <silent> <C-space> :CocFormat<CR>
 
 " NerdTree
 " ------------------------------------------------------------------------------
