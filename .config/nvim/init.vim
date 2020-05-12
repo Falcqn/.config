@@ -163,7 +163,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Vim-Polyglot :: http://vimawesome.com/plugin/vim-polyglot
 " ------------------------------------------------------------------------------
-  Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 
 " Conquerer of Completion :: https://github.com/neoclide/coc.nvim
 " ------------------------------------------------------------------------------
@@ -200,6 +200,11 @@ call plug#begin('~/.config/nvim/plugged')
   " use CTRL-space to reformat document
   command! -nargs=0 CocFormat :call CocAction('format')
   nnoremap <silent> <C-space> :CocFormat<CR>
+
+" vim-lsp-cxx-highlight
+" Semantic highlighting for C++ using LSP
+" ------------------------------------------------------------------------------
+  Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " NerdTree
 " ------------------------------------------------------------------------------

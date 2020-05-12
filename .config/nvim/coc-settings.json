@@ -1,14 +1,3 @@
 {
-  "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "args": ["--background-index", "--compile-commands-dir=build"],
-      "rootPatterns": [
-        "CMakeLists.txt",
-        ".git",
-        ".hg"
-      ],
-      "filetypes": ["c", "cpp", "cppm", "cxx", "h", "hpp"]
-    }
-  }
+  "clangd.semanticHighlighting": true
 }
