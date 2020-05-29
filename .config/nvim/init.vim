@@ -163,7 +163,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Vim-Polyglot :: http://vimawesome.com/plugin/vim-polyglot
 " ------------------------------------------------------------------------------
-" Plug 'sheerun/vim-polyglot'
+  Plug 'sheerun/vim-polyglot'
 
 " Conquerer of Completion :: https://github.com/neoclide/coc.nvim
 " ------------------------------------------------------------------------------
