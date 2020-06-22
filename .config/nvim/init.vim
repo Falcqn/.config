@@ -157,6 +157,10 @@ call plug#begin('~/.config/nvim/plugged')
 " ------------------------------------------------------------------------------
   Plug 'vim-airline/vim-airline-themes'
 
+" VimWiki
+" ------------------------------------------------------------------------------
+  Plug 'vimwiki/vimwiki'
+
 " MatchTagAlways :: http://vimawesome.com/plugin/matchtagalways
 " ------------------------------------------------------------------------------
   Plug 'valloric/matchtagalways'
