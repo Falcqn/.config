@@ -1,2 +1,2 @@
 alias ls='ls --color=auto'
-alias ll='ls -larth'
+alias ll='ls -lah'
