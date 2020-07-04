@@ -86,6 +86,9 @@ set backspace=2             " Allow backspacing over line breaks, autoindents,
 " Show trailing whitespace except when typing at the end of a line
 :match ErrorMsg /\s\+\%#\@<!$/
 
+" Show marker at column 81
+set cc=81
+
 " Add angle brackets to matched pairs
 set matchpairs+=<:>
 
