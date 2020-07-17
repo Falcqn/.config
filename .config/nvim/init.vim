@@ -105,6 +105,7 @@ let g:plug_repository='https://raw.githubusercontent.com/junegunn/vim-plug/maste
 if empty(glob(plug_location))
   execute '!curl -fLo ' . g:plug_location . ' --create-dirs ' . g:plug_repository
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  autocmd VimEnter * CocInstall coc-clangd --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.config/nvim/plugged')
